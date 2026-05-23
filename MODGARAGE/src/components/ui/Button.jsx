@@ -50,7 +50,6 @@ const Button = ({
         />
       )}
 
-      {/* Button Content */}
       <span className="relative z-10 flex items-center gap-2">
         {children}
         {icon && <span className="shrink-0">{icon}</span>}

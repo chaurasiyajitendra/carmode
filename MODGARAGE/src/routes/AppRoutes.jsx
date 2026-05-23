@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import PremiumLoader from "../components/loaders/PremiumLoader";
+import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 // Lazy-loaded pages
 const Landing = lazy(() => import("../pages/Landing"));
@@ -14,6 +15,8 @@ const SearchResults = lazy(() => import("../pages/SearchResults"));
 const About = lazy(() => import("../pages/About"));
 const Contact = lazy(() => import("../pages/Contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+const Login = lazy(() => import("../pages/Login/Login"));
+const Register = lazy(() => import("../pages/Register/Register"));
 
 const AppRoutes = () => {
   return (
@@ -33,12 +36,18 @@ const AppRoutes = () => {
         <Route path="/CUSTOMIZE/:id" element={<Navigate to="/customize/:id" replace />} />
         
         {/* User virtual garage fleet */}
-        <Route path="/garage" element={<Garage />} />
+        <Route path="/garage" element={<ProtectedRoute><Garage /></ProtectedRoute>} />
         <Route path="/GARAGE" element={<Navigate to="/garage" replace />} />
         
         {/* Specs comparative board */}
-        <Route path="/compare" element={<Compare />} />
+        <Route path="/compare" element={<ProtectedRoute><Compare /></ProtectedRoute>} />
         <Route path="/COMPARE" element={<Navigate to="/compare" replace />} />
+
+        {/* Auth portals */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/LOGIN" element={<Navigate to="/login" replace />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/REGISTER" element={<Navigate to="/register" replace />} />
 
         {/* Favorites and Search standalone pages */}
         <Route path="/favorites" element={<Favorites />} />

@@ -8,9 +8,9 @@ const Modal = ({
   title = "",
   children,
   className = "",
-  size = "md", // sm, md, lg, xl
+  size = "md", 
 }) => {
-  // Listen for Escape key to close modal
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape" && isOpen) {

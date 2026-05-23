@@ -4,7 +4,7 @@ const Badge = ({
   children,
   accentColor = "",
   className = "",
-  variant = "stage", // stage, category, default
+  variant = "stage", 
   tier = "S1",       // S1, S2, S3
   ...props
 }) => {

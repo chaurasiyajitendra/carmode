@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router";
 
 const cars = [
@@ -30,7 +29,6 @@ const cars = [
 ];
 
 const Showcase = () => {
-  const navigate = useNavigate();
 
   return (
     <section className="relative overflow-hidden bg-[#050505] px-6 py-28 text-white md:px-10">
@@ -116,15 +114,6 @@ const Showcase = () => {
                 <div className="mt-6 h-[1px] w-20 bg-white/40" />
 
                 {/* BUTTON */}
-                <button
-                  onClick={() => navigate(`/customize/${car.carId}`)}
-                  className="mt-8 flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-6 py-4 text-xs tracking-[0.25em] backdrop-blur-xl transition hover:bg-white hover:text-black cursor-pointer"
-                >
-
-                  VIEW BUILD
-
-                  <ArrowUpRight size={16} />
-                </button>
               </div>
 
               {/* BIG TEXT */}

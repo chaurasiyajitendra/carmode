@@ -2,11 +2,16 @@ import { useState, useCallback } from "react";
 import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Search, Compass } from "lucide-react";
+import { useSelector } from "react-redux";
+
 import Navbar from "../Navbar";
 import SearchOverlay from "./SearchOverlay";
+import UserDropdown from "../auth/UserDropdown";
+import { selectIsAuthenticated } from "../../features/auth/authSelectors";
 
 const Header = ({ sticky = false }) => {
   const location = useLocation();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
   const [navPanel, setNavPanel] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -62,16 +67,20 @@ const Header = ({ sticky = false }) => {
             <Search size={16} />
           </button>
 
-          <Link
-            to="/garage"
-            className={`text-[9px] font-black tracking-[0.25em] px-5 py-3 rounded-full border transition-all hover:scale-105 ${
-              location.pathname === "/garage"
-                ? "bg-white text-black border-white"
-                : "border-white/15 bg-white/5 text-white/80 hover:bg-white hover:text-black hover:border-white"
-            }`}
-          >
-            MY GARAGE
-          </Link>
+          {isAuthenticated ? (
+            <UserDropdown />
+          ) : (
+            <Link
+              to="/garage"
+              className={`text-[9px] font-black tracking-[0.25em] px-5 py-3 rounded-full border transition-all hover:scale-105 ${
+                location.pathname === "/garage"
+                  ? "bg-white text-black border-white"
+                  : "border-white/15 bg-white/5 text-white/80 hover:bg-white hover:text-black hover:border-white"
+              }`}
+            >
+              MY GARAGE
+            </Link>
+          )}
         </div>
       </motion.header>
 
